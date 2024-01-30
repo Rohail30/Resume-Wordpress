@@ -68,3 +68,7 @@
    ```
    sudo service apache2 restart
    ```
+
+9. **Start Building Your Resume:**
+    
+   After completing these steps, sign up and log in to your WordPress account using the server's IP address to set up your resume.
