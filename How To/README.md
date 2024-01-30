@@ -1,16 +1,14 @@
 ## Setting Up a Microsoft Azure Linux Server
 
-1. **Create Azure Account:**
+- **Create Azure Account:**
    - Visit [Microsoft Azure](https://azure.microsoft.com/) and create an account.
 
-2. **Create a Virtual Machine (VM):**
+- **Create a Virtual Machine (VM):**
    - In the Azure Portal, navigate to "Virtual Machines" and click "Add."
    - Follow the wizard to configure your VM, including selecting a Linux distribution and setting up authentication.
 
-3. **Connect to the VM:**
-   - Once the VM is created, connect to it using SSH or the Azure Portal's built-in console.
-
-### Setting Up Your Server for WordPress
+- **Connect to the VM:**
+   - Once the VM is created, connect to it using SSH or the Azure Portal's built-in console and follow steps below:
 
 1. **Update & Upgrade Packages:**
    ```
