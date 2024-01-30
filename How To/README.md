@@ -1,4 +1,4 @@
-## Setting Up a Microsoft Azure Linux Server
+## Setting Up a Microsoft Azure Linux Server And Resume On Wordpress
 
 - **Create Azure Account:**
    - Visit [Microsoft Azure](https://azure.microsoft.com/) and create an account.
