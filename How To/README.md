@@ -1,103 +1,60 @@
-<details><summary>Installation using Script</summary>
+### Setting Up Your Server for WordPress
 
-```
-wget -O setup.sh https://raw.githubusercontent.com/mustan-ali/LAMP-Wordpress/main/setup.sh
-```
-```
-chmod +x setup.sh
-```
-```
-./setup.sh
-```
-</details>
+1. **Update & Upgrade Packages:**
+   ```
+   sudo apt-get update -y
+   sudo apt-get upgrade -y
+   ```
 
-<details><summary>Manual Installation</summary>
+2. **Install Apache, MySQL, PHP, & Dependencies:**
+   ```
+   sudo apt-get install apache2 -y
+   sudo apt-get install mysql-server -y
+   sudo apt-get install php libapache2-mod-php php-mysql -y
+   ```
 
-### Update package lists & upgrade packages
-```
-sudo apt-get update -y
-```
-```
-sudo apt-get upgrade -y
-```
+3. **Configure Firewall & Allow Traffic:**
+   ```
+   sudo ufw enable
+   sudo ufw allow 22
+   sudo ufw allow 'Apache Full'
+   sudo ufw status
+   ```
 
-### Install Apache, MySQL, PHP, & dependencies
-```
-sudo apt-get install apache2 mysql-server php libapache2-mod-php php-mysql -y
-```
+4. **Start MySQL & Create Database:**
+   ```
+   sudo service mysql start
+   sudo mysql
+   CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+   CREATE DATABASE IF NOT EXISTS your_database_name;
+   GRANT ALL PRIVILEGES ON your_database_name.* TO 'your_username'@'localhost';
+   ALTER DATABASE your_database_name CHARACTER SET utf8 COLLATE utf8_general_ci;
+   FLUSH PRIVILEGES;
+   exit
+   ```
 
-### Enable firewall & configure Apache to allow HTTP & HTTPS traffic
-```
-sudo ufw enable
-```
-```
-sudo ufw allow 22
-```
-```
-sudo ufw allow 'Apache Full'
-```
-```
-sudo ufw status
-```
+5. **Download & Install WordPress:**
+   ```
+   cd /var/www/html/
+   sudo wget https://wordpress.org/latest.tar.gz
+   sudo tar -xf latest.tar.gz
+   sudo mv wordpress your_directory_name
+   ```
 
-### Start MySQL & create database.
-```
-sudo service mysql start
-```
-```
-sudo mysql
-```
-```
-CREATE USER 'username_here'@'localhost' IDENTIFIED BY 'password_here';
-```
-```
-CREATE DATABASE IF NOT EXISTS database_name_here;
-```
-```
-GRANT ALL PRIVILEGES ON database_name_here.* TO 'username_here'@'localhost';
-```
-```
-ALTER DATABASE database_name_here CHARACTER SET utf8 COLLATE utf8_general_ci;
-```
-```
-FLUSH PRIVILEGES;
-```
-```
-exit
-```
+6. **Configure WordPress:**
+   ```
+   cd /var/www/html/your_directory_name
+   sudo cp wp-config-sample.php wp-config.php
+   ```
 
-### Download & install WordPress (replace ```2112121``` with your desired directory name)
-```
-cd /var/www/html/
-```
-```
-sudo wget https://wordpress.org/latest.tar.gz
-```
-```
-sudo tar -xf latest.tar.gz
-```
-```
-sudo mv wordpress 2112121
-```
+7. **Update Apache Site Configurations:**
+   ```
+   cd /etc/apache2/sites-available/
+   sudo nano 000-default.conf
+   ```
+   Update `DocumentRoot /var/www/html/your_directory_name`
 
-### Copy WordPress config file & update it with database credentials
-```
-cd /var/www/html/2112121
-```
-```
-sudo cp wp-config-sample.php wp-config.php
-```
-
-### Navigate to Apache site configurations & update path to WordPress directory (```DocumentRoot /var/www/html/2112121```)
-```
-cd /etc/apache2/sites-available/
-```
-```
-sudo nano 000-default.conf
-```
-
-### Restart Apache to apply changes
-```
-sudo service apache2 restart
-```
-</details>
+8. **Restart Apache to Apply Changes:**
+   ```
+   sudo service apache2 restart
+   ```
